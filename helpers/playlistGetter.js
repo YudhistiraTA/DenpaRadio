@@ -9,6 +9,6 @@ module.exports = async function getPlaylistItems(nextPageToken) {
         }
     };
     if (nextPageToken) params.params.nextPageToken = nextPageToken;
-    const response = await axios.get('https://www.googleapis.com/youtube/v3/playlistItems', params);
-    return response.data;
+    const { data } = await axios.get('https://www.googleapis.com/youtube/v3/playlistItems', params);
+    return data;
 }

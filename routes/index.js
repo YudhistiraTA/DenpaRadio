@@ -1,16 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const playlistGetter = require("../helpers/playlistGetter");
+const videoQueueController = require("../controllers/videoQueueController.js");
 
-router.get("/", async (req, res, next) => {
-    try {
-        const items = await playlistGetter();
-        console.log(items);
-        res.status(200).json({ items });
-    }
-    catch (err) {
-        next(err);
-    }
-})
+router.get("/", videoQueueController.playlistGenerate);
 
 module.exports = router;
