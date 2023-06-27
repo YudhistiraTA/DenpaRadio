@@ -1,6 +1,6 @@
 const axios = require("axios");
 const shuffleArray = require("./arrayShuffle.js");
-module.exports = async function getPlaylistItems(nextPageToken) {
+module.exports = async (nextPageToken) => {
     let params = {
         params: {
             part: 'contentDetails',
@@ -9,7 +9,7 @@ module.exports = async function getPlaylistItems(nextPageToken) {
             key: process.env.YOUTUBE_API,  // replace with your YouTube Data API key
         }
     };
-    if (nextPageToken) params.params.nextPageToken = nextPageToken;
+    if (nextPageToken) params.params.pageToken = nextPageToken;
     const { data } = await axios.get('https://www.googleapis.com/youtube/v3/playlistItems', params);
-    return shuffleArray(data);
+    return data;
 }
